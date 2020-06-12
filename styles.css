@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'MyWebFont';
+    src:url('ShareTechMono-Regular.ttf')  format('truetype');
+ }
+
+body{
+    background-color: rgb(58, 58, 58);
+    color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 50px;
+    text-align: center;
+}
+
+#container{
+    background-color: grey;
+    width:380px;
+    border:6px solid black; 
+}
+
+#display-div{
+    background-color: grey;
+
+    display:grid;
+    grid-template-columns: 340px 40px;
+    grid-template-rows: 40px 40px;
+}
+
+#display{
+    font-family: 'MyWebFont';
+    color:black;
+    background-color: white;
+    margin:0 0;
+    border: 2px solid black;
+    height:78px;
+    width:340px;
+    font-size:50px;
+    line-height: 65px;
+}
+
+.clear{
+    width:40px;
+    height:40px;
+    font-size: 15px;
+    color:white;
+    background-color: rgb(199, 51, 51);
+    border:2px solid black;
+}
+
+#clearDisplay{
+    background-color: rgb(216, 200, 56);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#keypad{
+    margin:5px 0;
+    width:380px;
+    display:grid;
+    grid-template-columns: 200px 180px;
+}
+
+#numpad{
+    color:black;
+    width:200px;
+    display:grid;
+    grid-template-columns: repeat(3,60px);
+    justify-content:center;
+}
+
+#operations{
+    display:grid;
+    grid-template-columns: repeat(2,80px);
+    width:180px;
+    justify-content:center;
+    align-items: center;
+}
+
+button.num{
+    color:black;
+    width:50px;
+    height:50px;
+    margin:5px;
+    font-size: 35px;
+    background-color: white;
+    border:5px solid black;
+    text-align:center;
+    line-height: 17px;
+}
+
+button.op{
+    width:70px;
+    height:70px;
+    margin:5px;
+    font-size: 35px;
+    color:black;
+    background-color: rgb(173, 173, 173);
+    border:5px solid black;
+    text-align:center;
+    line-height: 17px;
+    
+}
+
+button#opEqual{
+    width:140px;
+    height:70px;
+    margin:5px;
+    font-size: 35px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: rgb(86, 207, 96);
+    border:5px solid black;
+    text-align:center;
+}

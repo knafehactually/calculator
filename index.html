@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+   
+        <title>knafehactually's calculator</title>
+    </head>
+
+    <body>
+        <h1>knafehactually's calculator</h1>
+        <div id="container">
+            <div id="display-div">
+                <p id="display">0</p>
+                <button id="clearDisplay" class="clear">CE</button>
+                <button id="clearAll" class="clear">C</button>
+            </div>
+            <div id="keypad">
+                <div id="numpad">
+                    <button id="num1" class="num">1</button>
+                    <button id="num2" class="num">2</button>
+                    <button id="num3" class="num">3</button>
+                    <button id="num4" class="num">4</button>
+                    <button id="num5" class="num">5</button>
+                    <button id="num6" class="num">6</button>
+                    <button id="num7" class="num">7</button>
+                    <button id="num8" class="num">8</button>
+                    <button id="num9" class="num">9</button>
+                    <button id="num." class="num">.</button>
+                    <button id="num0" class="num">0</button>
+                    <button id="num%" class="num">%</button>
+                </div>
+                <div id="operations">
+                    <button id="op+" class="op" value="+">+</button>
+                    <button id="op-" class="op" value="-">-</button>
+                    <button id="op*" class="op" value="*">x</button>
+                    <button id="op/" class="op" value="/">÷</button>
+                    <button id="opEqual" class="equal">=</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script>
+            let number1;
+            let operand;
+            let number2;
+            let lastResult=0;
+            let contFlag=1;
+
+            function clearDisplay(){
+                document.querySelector('p#display').textContent="";
+            };
+            document.querySelector('button#clearDisplay').addEventListener('click', clearDisplay);
+            
+            
+            function clearAll(){
+                document.querySelector('p#display').textContent=0;
+                number1=undefined;
+                number2=undefined;
+                operand=undefined;
+                contFlag=1;
+            };
+
+            document.querySelector('button#clearAll').addEventListener('click', clearAll);
+
+            let numbers=Array.from(document.querySelectorAll('button.num'));
+            for(let i=0; i<numbers.length; i++){
+                numbers[i].addEventListener('click', function() {
+                    if(contFlag===0){
+                        document.querySelector('p#display').innerHTML+=numbers[i].innerHTML;}
+                    else{
+                        clearDisplay();
+                        contFlag=0;
+                        document.querySelector('p#display').innerHTML+=numbers[i].innerHTML;
+                    }
+                    });
+            };
+
+            let operands=Array.from(document.querySelectorAll('button.op'));
+            for(let i=0; i<operands.length; i++){
+                operands[i].addEventListener('click', function() {
+                if(number1===undefined){
+                    number1=+document.querySelector('p#display').innerHTML;
+                    operand=operands[i].value
+                    contFlag=1
+                    }
+                else{
+                    contFlag=1;
+                    number2=+document.querySelector('p#display').innerHTML;
+                    number1=operate(number1, number2, operand);
+                    document.querySelector('p#display').innerHTML=number1;
+                    operand=operands[i].value
+                    };
+                });
+            };
+
+            let equal=document.querySelector('button#opEqual')
+            equal.addEventListener('click', function() {
+                    if(document.querySelector('p#display').innerHTML!==""){number2=+document.querySelector('p#display').innerHTML;}
+                    if(number1!==undefined && number2 !== undefined && operand !==undefined){lastResult=operate(number1, number2, operand);}; 
+                    document.querySelector('p#display').innerHTML=lastResult;
+                    contFlag=1;
+                    number1=undefined;
+                    number2=undefined;
+                    operand=undefined;
+                });
+
+            function operate(num1, num2, operand){
+                
+                    if(operand==="+"){
+                        return (num1+num2);}
+                    else if(operand==="-"){
+                        return (num1-num2);}
+                    else if(operand==="*"){
+                        return (num1*num2);}
+                    else if(operand==="/"){
+                        return(num1/num2);};
+                    };
+
+        </script>
+
+        <link href="styles.css" rel="stylesheet">
+    </body>
+
+</html>
